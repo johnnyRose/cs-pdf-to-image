@@ -90,7 +90,7 @@ namespace cs_pdf_to_image
 
             converter.FitPage = true;
             converter.JPEGQuality = mPrintQuality; //80
-            converter.OutputFormat = "png256";
+            converter.OutputFormat = "pnggray"; // grayscale
 
             converter.OutputToMultipleFile = false;
             converter.FirstPageToConvert = -1;

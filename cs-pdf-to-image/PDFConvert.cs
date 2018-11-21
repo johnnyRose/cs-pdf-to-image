@@ -4,6 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections;
 using System.IO;
+using System.Linq;
 
 namespace PdfToImage
 {
@@ -447,6 +448,13 @@ namespace PdfToImage
             bool result = false;
             try
             {
+                // Begin hacky fixes
+                var args = GetGeneratedArgs(inputFile, outputFile, options).ToList();
+                args[5] = "-r254"; // High quality
+                args.Insert(1, "-dUseCropBox"); // Do not add whitespace around the image
+
+                result = ExecuteGhostscriptCommand(args.ToArray());
+
                 result = ExecuteGhostscriptCommand(GetGeneratedArgs(inputFile, outputFile, options));
             }
             finally {if (mutex != null) mutex.ReleaseMutex();}

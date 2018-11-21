@@ -35,6 +35,8 @@ namespace pdf2png
             {
                 Console.WriteLine("Conversion is successful.");
             }
+
+            Console.ReadKey();
         }
     }
 }
